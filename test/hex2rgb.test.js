@@ -1,10 +1,11 @@
 var hex2rgb=require("../lib/hex2rgb");//our isolated function to be tested
 var expect=require("chai").expect;//library to do assertions
+var sinon=require("sinon");
 
-describe("hex2rgb",function(){
+describe.only("hex2rgb",function(){
 	it("should return an error if the value is not a hex code",function(done){
  		
- 			hex2rgb("blue",function(error,result){
+ 			hex2rgb.convert("blue",function(error,result){
  				expect(error).to.exist;
  				done();
  			});
@@ -13,7 +14,7 @@ describe("hex2rgb",function(){
 
 	it("should return a correctly converted rgb value",function(done){
 		//call function with a correct hex
-		var rgb=hex2rgb("#fff",function(error,result){
+		var rgb=hex2rgb.convert("#fff",function(error,result){
            //different sintax. Problem when checking errors and undefined objects with should
 			//error.should.not.exist; Does not work cause error is null
 			expect(error).to.not.exist;
@@ -22,6 +23,7 @@ describe("hex2rgb",function(){
 		});	
 
 	});
+
 
 	it("should return rgb if passed an rgb value ")//if you do not put the callback function is gonna be shown as pending. Its not asserting anything
 	//skip a test or group of tests(imagine they are failing)-> Use skip in the it function or describe
