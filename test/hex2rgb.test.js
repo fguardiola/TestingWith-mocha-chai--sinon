@@ -11,10 +11,10 @@ describe("hex2rgb",function(){
  		
 	});
 
-	it("should return a correctly converted rgb value",function(done){
+	it.only("should return a correctly converted rgb value",function(done){
 		//call function with a correct hex
 		var rgb=hex2rgb("#fff",function(error,result){
-			
+
 			assert.strictEqual(error,null);
 			assert.deepEqual(result,[255,255,255]);//if you are comparing arrays or objects use deepEqual instead of equal
 			done();
@@ -22,4 +22,12 @@ describe("hex2rgb",function(){
 		
 
 	});
+
+	it("should return rgb if passed an rgb value ")//if you do not put the callback function is gonna be shown as pending. Its not asserting anything
+
+	//skip a test or group of tests(imagine they are failing)-> Use skip in the it function or describe
+	it.skip("should skip this test and put it in pending ",function(){
+		console.log("Tested skipped");
+		assert.strictEqual(true,false);
+	})
 });

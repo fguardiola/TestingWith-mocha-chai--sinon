@@ -38,7 +38,6 @@ describe("getPalette",function(){
 
 	it("should return an array with 3 items by default",function(){
 		var palette=getPalette();//no parameters so is gonna execute the normal getData function. That way we can pass the two tests
-	    
 	    assert(Array.isArray(palette),"did not return an array");
 	    assert.equal(palette.length,3,"did not return 3 items");
 	});
