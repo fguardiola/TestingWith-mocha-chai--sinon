@@ -14,8 +14,24 @@ describe.only("hex2rgb",function(){
 				expect(hex2rgb.parse.args[0][0]).to.have.length(6); //we expect the argument passed is an array of 6 elements. 
 				//args[0] is an array of the arguments passed to parse the first time was called
 				//[0][0] is the first arg the first time
+				
+				//we have overwritten our parse function. IT,S always a good practice to restore the function we have the spy on
+				hex2rgb.parse.restore();
+				done();
+
+				
+			});
+		});
+
+		//we are going to control what parse returns and make sure that what comes back from convert its what parse returns.
+		it("should always return the result of parse",function(done){
+			sinon.stub(hex2rgb,"parse").returns([0,0,200]);
+			hex2rgb.convert("#ffffff",function(err,result){
+				expect(result).to.be.deep.equal([0,0,200]);
+				hex2rgb.parse.restore();
 				done();
 			});
+
 		});
 
 		it("should return an error if the value is not a hex code",function(done){
