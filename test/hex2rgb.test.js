@@ -30,6 +30,21 @@ describe.only("hex2rgb",function(){
 				expect(result).to.be.deep.equal([0,0,200]);
 				hex2rgb.parse.restore();
 				done();
+			
+			});
+
+		});
+		// we are going to make sure what is passed to parse is should always be a 6 characters array
+		it("should always pass a 6 item array to parse",function(done){
+			var mock=sinon.mock(hex2rgb);
+			//expectations
+			mock.expects("parse").twice().withExactArgs("000000".split(''));//we expect parse get called twice with exctly same args
+
+			hex2rgb.convert("000000",function(error,result){
+				hex2rgb.convert("0005",function(error,result){
+					mock.verify();
+					done();
+				});
 			});
 
 		});
