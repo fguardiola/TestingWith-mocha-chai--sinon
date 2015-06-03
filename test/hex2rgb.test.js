@@ -1,11 +1,11 @@
 var hex2rgb=require("../lib/hex2rgb");//our isolated function to be tested
-var should=require("chai").should();//library to do assertions
+var expect=require("chai").expect;//library to do assertions
 
 describe("hex2rgb",function(){
 	it("should return an error if the value is not a hex code",function(done){
  		
  			hex2rgb("blue",function(error,result){
- 				error.should.exist;
+ 				expect(error).to.exist;
  				done();
  			});
  		
@@ -16,11 +16,10 @@ describe("hex2rgb",function(){
 		var rgb=hex2rgb("#fff",function(error,result){
            //different sintax. Problem when checking errors and undefined objects with should
 			//error.should.not.exist; Does not work cause error is null
-			should.not.exist(error);
-			result.should.deep.equal([255,255,255]);
+			expect(error).to.not.exist;
+			expect(result).to.deep.equal([255,255,255]);
 			done();
-		});
-		
+		});	
 
 	});
 
