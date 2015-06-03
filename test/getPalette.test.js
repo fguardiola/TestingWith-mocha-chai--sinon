@@ -1,23 +1,23 @@
 var getPalette=require("../lib/getPalette");//our isolated function to be tested
-var assert=require("chai").assert;//library to do assertions
+var should=require("chai").should();//library to do assertions
 
 var fakeDataPath=process.cwd()+"/test/fixtures/config-palette-non-array.json";
 //console.log("fakeDataPath:"+fakeDataPath);
 describe("getPalette",function(){
 
 	it("should throw an error if the result is not an array",function(done){
-			assert.throws(function(){
+			/*assert.throws(function(){
 				getPalette(fakeDataPath)}
-				,/is not an array/);
+				,/is not an array/);*/
+			//different sintax. Problem when checking errors and undefined objects with should
+			should.Throw(function(){getPalette(fakeDataPath)},/is not an array/);
 			done();
 		});
 		
-
-
 	it("should return an array with 3 items by default",function(){
 		var palette=getPalette();//no parameters so is gonna execute the normal getData function. That way we can pass the two tests
-	    assert.isArray(palette,"did not return an array");
-	    assert.lengthOf(palette,3,"did not return 3 items");
+	    palette.should.be.an("array").with.length(3);
+	   
 	});
 	
 });
