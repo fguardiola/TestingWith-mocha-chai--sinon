@@ -14,6 +14,7 @@ describe("hex2rgb",function(){
 	it("should return a correctly converted rgb value",function(done){
 		//call function with a correct hex
 		var rgb=hex2rgb("#fff",function(error,result){
+			
 			assert.strictEqual(error,null);
 			assert.deepEqual(result,[255,255,255]);//if you are comparing arrays or objects use deepEqual instead of equal
 			done();
